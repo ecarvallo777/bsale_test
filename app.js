@@ -23,10 +23,29 @@ const connection = mysql.createPool({
 app.listen(PORT, () =>console.log(`Server running on port ${PORT}`));
 
 // Endpoints
+app.use("/", express.static("client"));
 
-app.get('/products', (req, res)=>{
-    const sql = 'SELECT * FROM product';
-    connection.query(sql, (error, results) =>{
+//Envía lista de categorías al cliente.
+app.get('/api/categories', (req, res)=>{
+    const categories = "SELECT * FROM category";
+
+    connection.query(categories, (error, results) =>{
+        if (error) throw error;
+        if (results.length > 0){
+            res.json(results);
+        }else{res.send('Not results');
+    }
+
+        
+    });
+
+});
+//Envía productos según categoría seleccionada desde el frontend.
+app.get('/api/:category', (req, res)=>{
+    const {category} = req.params;
+    const products = "SELECT * FROM product WHERE product.category='"+category+"'";
+
+    connection.query(products, (error, results) =>{
         if (error) throw error;
         if (results.length > 0){
             res.json(results);
