@@ -7,11 +7,10 @@
 // Use this file to add JavaScript to your project
 
 
-document.addEventListener("DOMContentLoaded", async() =>{
+async function charge() {
     const categoryList = await(await fetch("api/categories")).json();
     addCategories(categoryList);
 }
-);
 
 function addCategories(categoryList){
     const cat= document.getElementById("categories");
@@ -20,3 +19,4 @@ function addCategories(categoryList){
         console.log(categoryList[i].name);
     }
 }
+charge();
