@@ -49,7 +49,24 @@ app.get('/api/:category', (req, res)=>{
         if (error) throw error;
         if (results.length > 0){
             res.json(results);
-        }else{res.send('Not results');
+        }else{res.json({result: 'No hay resultados.'});
+    }
+
+        
+    });
+
+});
+
+//Filtra y envía resultado de búsqueda de productos.
+app.get('/api/search/:product', (req, res)=>{
+    const {product} = req.params;
+    const products = "SELECT * FROM product WHERE name LIKE '%"+product+"%'";
+
+    connection.query(products, (error, results) =>{
+        if (error) throw error;
+        if (results.length > 0){
+            res.json(results);
+        }else{res.json({result: 'False'});
     }
 
         
