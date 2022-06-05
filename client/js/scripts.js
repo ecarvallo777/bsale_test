@@ -24,6 +24,7 @@ chargeMenu();
 
 async function chargeCategory(category_id){
     const productsList = await(await fetch("api/"+category_id+"")).json();
+
     addProducts(productsList);
 
 }
@@ -62,6 +63,8 @@ function addProducts(productsList){
     +'</div>'
         productContainer.insertAdjacentHTML('beforeend', product);
     }
+
+    pagination();
         
 
 }
