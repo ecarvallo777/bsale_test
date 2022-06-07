@@ -24,7 +24,6 @@ function pagination(){
 
     $(function(){
         var numberOfItems = $(".row .col").length;
-        console.log(numberOfItems);
         var limitPerPage = 4;
         var totalPages = Math.ceil(numberOfItems / limitPerPage);
         var paginationSize = 10;

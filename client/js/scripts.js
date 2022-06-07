@@ -26,6 +26,7 @@ async function chargeCategory(category_id){
     const productsList = await(await fetch("api/"+category_id+"")).json();
 
     addProducts(productsList);
+    $("select").show();
 
 }
 //Buscador de productos.
@@ -39,6 +40,7 @@ async function searchProduct(product){
     const productsList = await(await fetch("api/search/"+product+"")).json();
     if(productsList.result==='False'){alert("No se han encontrado resultados.");}
     addProducts(productsList);
+    $("select").hide();
 }
 
 //
@@ -53,6 +55,7 @@ function addProducts(productsList){
         +'<div class="card-body p-4">'
             +'<div class="text-center">'
                 +'<h5 class="fw-bolder">'+productsList[i].name+'</h5>'
+                +'<a id="category" style="display:none" name="'+productsList[i].category+'"></a>'
                 +'$'+productsList[i].price
             +'</div>'
         +'</div>'

@@ -44,12 +44,20 @@
                         <div class="input-group-append">
                           <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
                         </div>
+                        
                       </div>
+                      <select  id="select" onchange="selectionChange(this.value)" style="display:none">
+                        <option value="Ordenar" >Ordenar productos</option>
+                        <option value="asc" value="asc"">Menor precio</option>
+                        <option value="desc" value="desc"">Mayor precio</option>
+
+                  </select>
                 </div>
             </div>
         </header>
         <!-- Section-->
         <section class="py-5">
+            
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="container" style="display: none" >
                     
@@ -57,16 +65,7 @@
                 
             </div>
                 <div class="pagination justify-content-center" >
-                <!--
-                  <li class="page-item previous-page"><a class="page-link" href="#">Previous</a></li>
-                  <li class="page-item current-page"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item dots"><a class="page-link" href="#">...</a></li>
-                  <li class="page-item current-page"><a class="page-link" href="#">5</a></li>
-                  <li class="page-item current-page"><a class="page-link" href="#">6</a></li>
-                  <li class="page-item dots"><a class="page-link" href="#">...</a></li>
-                  <li class="page-item current-page"><a class="page-link" href="#">10</a></li>
-                  <li class="page-item next-page"><a class="page-link" href="#">Next</a></li>
-                -->
+
                 </div>
         </section>
         <!-- Footer-->
@@ -79,6 +78,7 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script src="js/pagination.js"></script>
+        <script src="js/sort.js"></script>
 
     </body>
 </html>

@@ -73,3 +73,24 @@ app.get('/api/search/:product', (req, res)=>{
     });
 
 });
+
+//Sort {asc,desc} category {category.name}
+
+app.get('/api/sort/:sort/:category', (req, res)=>{
+    const {category} = req.params;
+    const {sort} = req.params;
+
+    console.log(category, sort);
+    const products = "SELECT * FROM product WHERE product.category='"+category+"' ORDER BY price "+sort+"";
+
+    connection.query(products, (error, results) =>{
+        if (error) throw error;
+        if (results.length > 0){
+            res.json(results);
+        }else{res.json({result: 'No hay resultados.'});
+    }
+
+        
+    });
+
+});
