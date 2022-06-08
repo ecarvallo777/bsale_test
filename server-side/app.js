@@ -23,7 +23,7 @@ const connection = mysql.createPool({
 app.listen(PORT, () =>console.log(`Server running on port ${PORT}`));
 
 // Endpoints
-app.use("/", express.static("client"));
+app.use("/", express.static("client-side"));
 
 //Envía lista de categorías al usuario. {1}
 app.get('/api/categories', (req, res)=>{
