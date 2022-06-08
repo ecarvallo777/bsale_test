@@ -25,7 +25,7 @@ app.listen(PORT, () =>console.log(`Server running on port ${PORT}`));
 // Endpoints
 app.use("/", express.static("client"));
 
-//Envía lista de categorías al cliente.
+//Envía lista de categorías al usuario. {1}
 app.get('/api/categories', (req, res)=>{
     const categories = "SELECT * FROM category";
 
@@ -33,14 +33,16 @@ app.get('/api/categories', (req, res)=>{
         if (error) throw error;
         if (results.length > 0){
             res.json(results);
-        }else{res.send('Not results');
+        }else{res.send('No hay resultados');
     }
 
         
     });
 
 });
-//Envía productos según categoría seleccionada desde el frontend.
+
+
+//Envía productos según categoría seleccionada por el usuario. {2}
 app.get('/api/:category', (req, res)=>{
     const {category} = req.params;
     const products = "SELECT * FROM product WHERE product.category='"+category+"'";
@@ -57,7 +59,7 @@ app.get('/api/:category', (req, res)=>{
 
 });
 
-//Filtra y envía resultado de búsqueda de productos.
+//Filtra y envía resultado de búsqueda de productos. {3}
 app.get('/api/search/:product', (req, res)=>{
     const {product} = req.params;
     const products = "SELECT * FROM product WHERE name LIKE '%"+product+"%'";
@@ -74,13 +76,12 @@ app.get('/api/search/:product', (req, res)=>{
 
 });
 
-//Sort {asc,desc} category {category.name}
+//Sort {asc,desc} category {category.name} {4}
 
 app.get('/api/sort/:sort/:category', (req, res)=>{
     const {category} = req.params;
     const {sort} = req.params;
 
-    console.log(category, sort);
     const products = "SELECT * FROM product WHERE product.category='"+category+"' ORDER BY price "+sort+"";
 
     connection.query(products, (error, results) =>{

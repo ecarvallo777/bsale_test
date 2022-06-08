@@ -9,16 +9,11 @@
 // Cargar menú desde base de datos.
 async function chargeMenu() {
     const categoryList = await(await fetch("api/categories")).json();
-    addCategories(categoryList);
-}
-
-function addCategories(categoryList){
     const cat= document.getElementById("categories");
     for(var i=0; i<categoryList.length; i++){
         cat.insertAdjacentHTML('beforeend', '<li class="nav-item"><a class="nav-link" href="#!" onclick="chargeCategory('+categoryList[i].id+')">'+categoryList[i].name+'</a></li>');
-    }
-}
-chargeMenu();
+    }}
+
 
 //Cargar productos de categoría seleccionada.
 
@@ -78,3 +73,6 @@ function eraseProducts(parent){
 
 
 }
+
+
+chargeMenu();
